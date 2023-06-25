@@ -12,13 +12,13 @@ def characterReplacement(s, k):
     for right in range(len(s)):
         count[s[right]] = 1 + count.get(s[right], 0)
         maxFreq = max(maxFreq, count[s[right]])
-
-        if (right - left + 1) - maxFreq > k:
+        window = right - left + 1
+        if window - maxFreq > k:
             count[s[left]] -= 1
             left += 1
 
-        window = right - left
-        largest = max(largest, window + 1)
+        
+        largest = max(largest, window)
 
     return largest
 
