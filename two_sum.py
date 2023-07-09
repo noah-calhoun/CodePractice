@@ -1,8 +1,16 @@
 
 def twoSum(nums, target):
     memo = {}
-    for num, i in enumerate(nums):
-        return
+
+    for i, num in enumerate(nums):
+        needed = target - num
+        if needed in memo:
+            return [i, memo.get(needed)]
+        
+        else:
+            memo[num] = i
+
+    return
 
 
 
