@@ -13,10 +13,7 @@ class LinkedList:
     
     def is_empty(self):
         return self.head is None
-        # if self.head is None:
-        #     return True
-        # return False
-    
+
     def append(self, value):
         node = Node(value)
         if self.is_empty():
@@ -50,7 +47,6 @@ class LinkedList:
                 return
             current = current.next
 
-
     def display(self):
         elements = []
         current = self.head
@@ -67,6 +63,10 @@ class LinkedList:
             current = current.next
         return False
 
+    def clear(self):
+        self.head = None
+    
+
 if __name__ == "__main__":
     linked_list = LinkedList()
     linked_list.append(10)
@@ -82,3 +82,4 @@ if __name__ == "__main__":
 
     print(linked_list.search(10))  # Output: True
     print(linked_list.search(20))  # Output: False
+
