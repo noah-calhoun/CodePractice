@@ -7,3 +7,15 @@ linkedin:
     OR "hackajob" OR "acceler8 talent" OR "crossover" OR "jobot" OR "understanding recruitment" OR "Robert Half" OR "ManTech")
 
 
+    ("software engineer" OR "software developer" OR "cloud engineer") NOT ("senior" OR "staff" OR "tata consultancy services" OR "insight global" OR "programmers.io" OR "braintrust" OR "hackajob" OR "acceler8 talent" OR "crossover" OR "jobot" OR "understanding recruitment" OR "Robert Half" OR "ManTech" OR "DICE" OR "TEKsystems")
+
+
+
+
+
+
+
+
+
+
+
