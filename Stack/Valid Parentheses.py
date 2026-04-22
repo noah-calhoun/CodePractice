@@ -24,23 +24,19 @@ def isValid(s):
     else:
         return False
 
-def isValidOld(s):
-
-    
-    data = {"(":0,")":0, "{":0, "}":0, "[":0, "]":0}
-
-    for char in s:
-        data[char] = data.get(char, 0) + 1
-
-    if data.get('[') == data.get(']') and data.get('{') == data.get('}') and data.get('(') == data.get(')'):
-        return True
-    return False
+# def isValidOld(s):
+#     data = {"(":0,")":0, "{":0, "}":0, "[":0, "]":0}
+#     for char in s:
+#         data[char] = data.get(char, 0) + 1
+#     if data.get('[') == data.get(']') and data.get('{') == data.get('}') and data.get('(') == data.get(')'):
+#         return True
+#     return False
 
 
 
 if __name__ == '__main__':
-    s = "([)]"
-    s = "()[]{}"
+    # s = "([)]"
+    # s = "()[]{}"
     s = "([{}{}])"
     # s = "()()"
     print(isValid(s))

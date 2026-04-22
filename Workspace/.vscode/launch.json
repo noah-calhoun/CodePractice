@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug solution.ts",
+            "runtimeExecutable": "npx",
+            "runtimeArgs": ["ts-node", "${workspaceFolder}/src/solution.ts"],
+            "cwd": "${workspaceFolder}",
+            "sourceMaps": true
+        }
+    ]
+}
