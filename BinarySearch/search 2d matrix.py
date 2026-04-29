@@ -8,7 +8,10 @@
 # You must write a solution in O(log(m * n)) time complexity.
 
 
-def searchMatrix(matrix, target):
+from typing import List
+
+
+def searchMatrixOld(matrix, target):
     pointVert = 0
     pointHorz = 0
 
@@ -41,14 +44,35 @@ def searchMatrix(matrix, target):
 
 
 
+def searchMatrix(matrix: List[List[int]], target: int) -> bool:
+        row, rowL, rowR = 0, 0, len(matrix[0]) -1
+        # Find the row, then the column, then binary search value
+        while row < len(matrix) - 1:
+            leftVal, rightVal = matrix[row][rowL], matrix[row][rowR]
+            if (target >= leftVal) and (target <= rightVal):
+                # row found, break
+                break 
+            row += 1
+        while rowL <= rowR:
+            mid = (rowL + rowR) // 2
+            value = matrix[row][mid]
+            if target == value:
+                return True
+            elif target > matrix[row][mid]:
+                rowL = mid + 1
+            else:
+                rowR = mid - 1
 
+        return False
 
 
 
 if __name__ == '__main__':
     matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]]
-    matrix = [[1,3]]
-    matrix = [[1,3,5]]
-    target = 6
+    matrix =  [[1,2,4,8],[10,11,12,13],[14,20,30,40]]
+    # matrix = [[1,3]]
+    # matrix = [[1,3,5]]
+    # target = 6
+    target = 10
 
-    print(searchMatrix(matrix, target))
+    print(searchMatrix( matrix, target))

@@ -329,3 +329,214 @@ const sample: CallEvent[] = [
     { callId: 'call-2', type: 'end', timestamp: 1744675270000 },
     { callId: 'call-1', type: 'end', timestamp: 1744675275000 },
 ];
+
+
+// ── PROBLEM 8 ─────────────────────────────────────────────────────────────────
+// Generic groupBy
+//
+// Implement a generic groupBy function that takes an array of items and a key
+// selector, and returns an object mapping each key to the array of items that
+// share that key.
+//
+// Example:
+//   const people = [
+//     { name: "Alice", role: "engineer" },
+//     { name: "Bob",   role: "designer" },
+//     { name: "Carol", role: "engineer" },
+//   ]
+//   groupBy(people, p => p.role)
+//   → { engineer: [{ name: "Alice", ... }, { name: "Carol", ... }], designer: [...] }
+//
+// Constraints:
+//   - Must be generic — the function should work for any T and any string key
+//   - The key selector is a function (T) => string
+
+function groupBy<T>(items: T[], keySelector: (item: T) => string): Record<string, T[]> {
+    return {};
+}
+
+
+// ── PROBLEM 9 ─────────────────────────────────────────────────────────────────
+// Simple In-Memory Cache
+//
+// Implement a generic Cache<K, V> class with a max capacity.
+// When the cache is full and a new key is inserted, evict the least-recently-used
+// (LRU) entry.
+//
+// Methods:
+//   get(key: K): V | undefined   — return value if present, else undefined
+//   set(key: K, value: V): void  — insert or update; evict LRU if over capacity
+//   size(): number               — return number of entries currently cached
+//
+// Example:
+//   const cache = new Cache<string, number>(2)
+//   cache.set("a", 1)
+//   cache.set("b", 2)
+//   cache.get("a")      // 1  — "a" is now most recently used
+//   cache.set("c", 3)   // evicts "b" (LRU)
+//   cache.get("b")      // undefined
+//   cache.get("c")      // 3
+
+class Cache<K, V> {
+    constructor(private capacity: number) {}
+
+    get(key: K): V | undefined {
+        return undefined;
+    }
+
+    set(key: K, value: V): void {}
+
+    size(): number {
+        return 0;
+    }
+}
+
+
+// ── PROBLEM 10 ────────────────────────────────────────────────────────────────
+// Role-Based Access Control
+//
+// You have a permission system with three roles: "admin", "editor", "viewer".
+// Each role has a fixed set of allowed actions:
+//   admin  → ["read", "write", "delete", "manage"]
+//   editor → ["read", "write"]
+//   viewer → ["read"]
+//
+// Implement:
+//   canPerform(role: Role, action: Action): boolean
+//     → true if the role is allowed to perform that action
+//
+//   filterAuthorized<T extends { role: Role }>(
+//     users: T[], action: Action
+//   ): T[]
+//     → returns only the users who can perform the given action
+//
+// Use TypeScript union types for Role and Action — no string literals elsewhere.
+//
+// Example:
+//   canPerform("editor", "delete")  → false
+//   canPerform("admin", "manage")   → true
+//
+//   const users = [
+//     { name: "Alice", role: "admin"  as Role },
+//     { name: "Bob",   role: "viewer" as Role },
+//   ]
+//   filterAuthorized(users, "write") → [{ name: "Alice", role: "admin" }]
+
+type Role = "admin" | "editor" | "viewer";
+type Action = "read" | "write" | "delete" | "manage";
+
+function canPerform(role: Role, action: Action): boolean {
+    return false;
+}
+
+function filterAuthorized<T extends { role: Role }>(users: T[], action: Action): T[] {
+    return [];
+}
+
+
+// ── PROBLEM 11 ────────────────────────────────────────────────────────────────
+// Async Retry with Exponential Backoff
+//
+// Implement a retry<T> function that:
+//   - Calls an async operation (a function that returns Promise<T>)
+//   - If it throws, waits `delayMs` milliseconds and retries
+//   - Each retry doubles the delay (exponential backoff)
+//   - After `maxAttempts` total attempts, throws the last error
+//
+// Signature:
+//   retry<T>(fn: () => Promise<T>, maxAttempts: number, delayMs: number): Promise<T>
+//
+// Example (pseudocode):
+//   let calls = 0
+//   const flaky = () => {
+//     calls++
+//     if (calls < 3) throw new Error("not yet")
+//     return Promise.resolve("ok")
+//   }
+//   await retry(flaky, 5, 100)  → "ok"  (succeeded on 3rd attempt)
+//   await retry(flaky, 2, 100)  → throws after 2 attempts
+
+async function retry<T>(fn: () => Promise<T>, maxAttempts: number, delayMs: number): Promise<T> {
+    throw new Error("not implemented");
+}
+
+
+// ── PROBLEM 12 ────────────────────────────────────────────────────────────────
+// Flatten Nested Config
+//
+// You have a nested config object of arbitrary depth. Flatten it into a single
+// object where each key is the dot-separated path to the original value.
+// Only leaf values (non-objects) should appear as keys in the output.
+//
+// Example:
+//   const config = {
+//     server: {
+//       host: "localhost",
+//       port: 8080,
+//       tls: { enabled: true, cert: "/etc/ssl/cert.pem" }
+//     },
+//     debug: false,
+//   }
+//   flattenConfig(config)
+//   → {
+//       "server.host": "localhost",
+//       "server.port": 8080,
+//       "server.tls.enabled": true,
+//       "server.tls.cert": "/etc/ssl/cert.pem",
+//       "debug": false,
+//     }
+
+type NestedConfig = { [key: string]: string | number | boolean | NestedConfig };
+
+function flattenConfig(config: NestedConfig, prefix = ""): Record<string, string | number | boolean> {
+    return {};
+}
+
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Test drivers — uncomment as you implement each problem
+
+// Problem 8
+// console.log("\n── Problem 8 ──");
+// const people = [
+//   { name: "Alice", role: "engineer" },
+//   { name: "Bob",   role: "designer" },
+//   { name: "Carol", role: "engineer" },
+// ];
+// console.log(groupBy(people, p => p.role));
+// Expected: { engineer: [{...Alice}, {...Carol}], designer: [{...Bob}] }
+
+// Problem 9
+// console.log("\n── Problem 9 ──");
+// const cache = new Cache<string, number>(2);
+// cache.set("a", 1); cache.set("b", 2);
+// console.log(cache.get("a"));   // 1
+// cache.set("c", 3);
+// console.log(cache.get("b"));   // undefined
+// console.log(cache.get("c"));   // 3
+// console.log(cache.size());     // 2
+
+// Problem 10
+// console.log("\n── Problem 10 ──");
+// console.log(canPerform("editor", "delete"));  // false
+// console.log(canPerform("admin",  "manage"));  // true
+// const users = [
+//   { name: "Alice", role: "admin"  as Role },
+//   { name: "Bob",   role: "viewer" as Role },
+// ];
+// console.log(filterAuthorized(users, "write")); // [{ name: "Alice", ... }]
+
+// Problem 11
+// console.log("\n── Problem 11 ──");
+// let calls = 0;
+// const flaky = () => { calls++; if (calls < 3) return Promise.reject(new Error("not yet")); return Promise.resolve("ok"); };
+// retry(flaky, 5, 50).then(v => console.log(v)); // "ok"
+
+// Problem 12
+// console.log("\n── Problem 12 ──");
+// const config = {
+//   server: { host: "localhost", port: 8080, tls: { enabled: true, cert: "/etc/ssl/cert.pem" } },
+//   debug: false,
+// };
+// console.log(flattenConfig(config));
+// Expected: { "server.host": "localhost", "server.port": 8080, "server.tls.enabled": true, "server.tls.cert": "/etc/ssl/cert.pem", "debug": false }

@@ -1,7 +1,7 @@
 # Given a string s, find the length of the longest substring without repeating characters.
 
 
-def lengthOfLongestSubstring(s):
+def lengthOfLongestSubstringOld2(s):
     charSet = set()
     windowSize = 0
     largest = 0
@@ -20,10 +20,21 @@ def lengthOfLongestSubstring(s):
 
 
 
+def lengthOfLongestSubstring(s: str) -> int:
+    l, r = 0, 1
+    res = min(1, len(s))
+    # z x y z x y z
+    # 0 1 2 3 4 5 6
+    while r < len(s):
+        word = s[l:r]
+        char = s[r]
+        if char not in word:
+            res = max(res, len(word) + 1)
+            r += 1
+        else:
+            l += 1
 
-
-
-
+    return res
 
 
 
@@ -50,6 +61,6 @@ def lengthOfLongestSubstringOld(s):
 
 if __name__ == '__main__':
     s = "abcabcbb"
-    # s = "pwwkew"
+    s = "pwwkew"
     # s = "dvdf"
     print(lengthOfLongestSubstring(s))
