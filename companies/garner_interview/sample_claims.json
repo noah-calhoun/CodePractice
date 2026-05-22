@@ -1,0 +1,106 @@
+{
+  "providers": [
+    {
+      "npi": "1234567890",
+      "name": "Dr. Priya Patel",
+      "specialty": "Endocrinology",
+      "in_network": true
+    },
+    {
+      "npi": "2345678901",
+      "name": "Dr. Marcus Chen",
+      "specialty": "Cardiology",
+      "in_network": true
+    },
+    {
+      "npi": "3456789012",
+      "name": "Dr. Sarah Okafor",
+      "specialty": "Family Medicine",
+      "in_network": true
+    },
+    {
+      "npi": "4567890123",
+      "name": "Dr. James Reilly",
+      "specialty": "Orthopedics",
+      "in_network": false
+    }
+  ],
+  "members": [
+    {
+      "member_id": "M-1001",
+      "plan_id": "PLAN-HRA-STANDARD",
+      "deductible_cents": 0,
+      "deductible_met_cents": 0,
+      "approved_providers": [
+        {"npi": "3456789012", "added_on": "2026-01-15"},
+        {"npi": "1234567890", "added_on": "2026-03-04"},
+        {"npi": "2345678901", "added_on": "2026-04-22"}
+      ]
+    },
+    {
+      "member_id": "M-1002",
+      "plan_id": "PLAN-HRA-HSA",
+      "deductible_cents": 200000,
+      "deductible_met_cents": 200000,
+      "approved_providers": [
+        {"npi": "2345678901", "added_on": "2026-02-01"}
+      ]
+    },
+    {
+      "member_id": "M-1003",
+      "plan_id": "PLAN-HRA-HSA",
+      "deductible_cents": 200000,
+      "deductible_met_cents": 50000,
+      "approved_providers": [
+        {"npi": "1234567890", "added_on": "2026-01-10"}
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "C-7001",
+      "member_id": "M-1001",
+      "provider_npi": "1234567890",
+      "date_of_service": "2026-05-12",
+      "cpt_code": "99214",
+      "billed_cents": 28000,
+      "member_responsibility_cents": 4500
+    },
+    {
+      "claim_id": "C-7002",
+      "member_id": "M-1002",
+      "provider_npi": "2345678901",
+      "date_of_service": "2026-05-08",
+      "cpt_code": "93000",
+      "billed_cents": 45000,
+      "member_responsibility_cents": 7500
+    },
+    {
+      "claim_id": "C-7003",
+      "member_id": "M-1003",
+      "provider_npi": "1234567890",
+      "date_of_service": "2026-05-14",
+      "cpt_code": "99213",
+      "billed_cents": 22000,
+      "member_responsibility_cents": 3500
+    },
+    {
+      "claim_id": "C-7004",
+      "member_id": "M-1001",
+      "provider_npi": "4567890123",
+      "date_of_service": "2026-05-10",
+      "cpt_code": "29888",
+      "billed_cents": 120000,
+      "member_responsibility_cents": 25000
+    },
+    {
+      "claim_id": "C-7005",
+      "member_id": "M-1001",
+      "provider_npi": "3456789012",
+      "date_of_service": "2026-05-15",
+      "cpt_code": "99395",
+      "billed_cents": 18000,
+      "member_responsibility_cents": 3000
+    }
+  ]
+}
