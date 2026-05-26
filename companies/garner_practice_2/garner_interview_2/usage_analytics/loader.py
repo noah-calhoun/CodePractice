@@ -6,7 +6,6 @@ from typing import Iterator
 
 def load_events(path: str) -> Iterator[dict]:
     """Yield events from a JSONL file, parsing timestamps to datetimes.
-
     Malformed lines are skipped with a warning printed to stderr.
     """
     with open(path) as f:

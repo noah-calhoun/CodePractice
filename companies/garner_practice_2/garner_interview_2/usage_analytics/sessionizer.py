@@ -37,7 +37,6 @@ def sessionize(events: Iterable[dict]) -> list[Session]:
     by_member: dict[str, list[dict]] = defaultdict(list)
     for e in events:
         by_member[e["member_id"]].append(e)
-
     sessions: list[Session] = []
     for member_id, member_events in by_member.items():
         member_events.sort(key=lambda e: e["timestamp"])
