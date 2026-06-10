@@ -20,10 +20,12 @@ from typing import List
 # 0 <= nums[i] <= 400
 
 def rob(nums: List[int]) -> int:
-    memo = {}
+    prev2, prev1 = 0, 0
 
-    
-    pass
+    for num in nums:
+        prev2, prev1 = prev1, max(prev1, num + prev2)
+
+    return prev1
 
 
 # Tests
